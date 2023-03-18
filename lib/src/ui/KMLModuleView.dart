@@ -104,6 +104,6 @@ class KMLModuleView extends StatelessWidget {
   /// Select KML module.
   moduleSelected(context) {
     database.updateViewed(state.toString(), data);
-    BlocProvider.of<PageBloc>(context).dispatch(HOME(data));
+    BlocProvider.of<PageBloc>(context).add(HOME(data));
   }
 }

@@ -43,7 +43,7 @@ class _GuidePlacemarkState extends State<GuidePlacemark> {
     showAnimationState = true;
     pBloc = PointBloc();
     fBloc = FreezeBloc(pBloc);
-    fBloc.dispatch(FREEZE(OverlayMenu.SAVE));
+    fBloc.add(FREEZE(OverlayMenu.SAVE));
   }
 
   @override
@@ -52,15 +52,15 @@ class _GuidePlacemarkState extends State<GuidePlacemark> {
   }
 
   Widget build(BuildContext context) {
-    return BlocProviderTree(
-      blocProviders: [
-        BlocProvider<FreezeBloc>(bloc: fBloc),
-        BlocProvider<PointBloc>(bloc: pBloc),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<FreezeBloc>(create: (BuildContext context)=>fBloc),
+        BlocProvider<PointBloc>(create: (BuildContext context)=>pBloc),
       ],
-      child: BlocBuilder<PointEvent, PointState>(
+      child: BlocBuilder(
           bloc: BlocProvider.of<PointBloc>(context),
           builder: (BuildContext context, PointState state) {
-            return BlocBuilder<OverlayEvent, OverlaysState>(
+            return BlocBuilder(
                 bloc: BlocProvider.of<FreezeBloc>(context),
                 builder: (BuildContext context, OverlaysState state) {
                   if ( //state is CompletedState &&
@@ -177,7 +177,7 @@ class _GuidePlacemarkState extends State<GuidePlacemark> {
                                                     pBloc.data.clear();
                                                     BlocProvider.of<PointBloc>(
                                                             context)
-                                                        .dispatch(
+                                                        .add(
                                                             MODIFY_EVENT());
                                                   },
                                                 ),
@@ -326,10 +326,10 @@ class PlacemarkMenu extends StatelessWidget {
       padding: EdgeInsets.all(16),
       child: Card(
           elevation: 4,
-          child: BlocBuilder<PointEvent, PointState>(
+          child: BlocBuilder(
               bloc: BlocProvider.of<PointBloc>(context),
               builder: (BuildContext context, PointState state) {
-                return BlocBuilder<OverlayEvent, OverlaysState>(
+                return BlocBuilder(
                     bloc: BlocProvider.of<FreezeBloc>(context),
                     builder: (BuildContext context, OverlaysState state) {
                       if (state is FrozenState)
@@ -362,7 +362,7 @@ class PlacemarkMenu extends StatelessWidget {
             (selected == OverlayMenu.ROUND_TEMP) ? Colors.teal : Colors.black54,
         onPressed: () {
           BlocProvider.of<FreezeBloc>(context)
-              .dispatch(FREEZE(OverlayMenu.ROUND_TEMP));
+              .add(FREEZE(OverlayMenu.ROUND_TEMP));
         },
         tooltip: OverlayMenu.ROUND_TEMP.title,
       ),
@@ -375,7 +375,7 @@ class PlacemarkMenu extends StatelessWidget {
         icon: OverlayMenu.PAN.icon,
         color: (selected == OverlayMenu.PAN) ? Colors.teal : Colors.black54,
         onPressed: () =>
-            BlocProvider.of<FreezeBloc>(context).dispatch(UNFREEZE(null)),
+            BlocProvider.of<FreezeBloc>(context).add(UNFREEZE(null)),
         tooltip: OverlayMenu.PAN.title,
       ),
     );

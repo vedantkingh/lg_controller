@@ -24,10 +24,10 @@ class OverlayMenuBar extends StatelessWidget {
       padding: EdgeInsets.all(16),
       child: Card(
           elevation: 4,
-          child: BlocBuilder<PointEvent, PointState>(
+          child: BlocBuilder(
               bloc: BlocProvider.of<PointBloc>(context),
               builder: (BuildContext context, PointState state) {
-                return BlocBuilder<OverlayEvent, OverlaysState>(
+                return BlocBuilder(
                     bloc: BlocProvider.of<FreezeBloc>(context),
                     builder: (BuildContext context, OverlaysState state) {
                       if (state is FrozenState)
@@ -97,30 +97,30 @@ class OverlayMenuBar extends StatelessWidget {
       case OverlayMenu.LINE:
         {
           BlocProvider.of<FreezeBloc>(context)
-              .dispatch(FREEZE(OverlayMenu.LINE));
+              .add(FREEZE(OverlayMenu.LINE));
         }
         break;
       case OverlayMenu.POLYGON:
         {
           BlocProvider.of<FreezeBloc>(context)
-              .dispatch(FREEZE(OverlayMenu.POLYGON));
+              .add(FREEZE(OverlayMenu.POLYGON));
         }
         break;
       case OverlayMenu.ROUND_TEMP:
         {
           BlocProvider.of<FreezeBloc>(context)
-              .dispatch(FREEZE(OverlayMenu.ROUND_TEMP));
+              .add(FREEZE(OverlayMenu.ROUND_TEMP));
         }
         break;
       case OverlayMenu.IMAGE:
         {
           BlocProvider.of<FreezeBloc>(context)
-              .dispatch(FREEZE(OverlayMenu.IMAGE));
+              .add(FREEZE(OverlayMenu.IMAGE));
         }
         break;
       case OverlayMenu.PAN:
         {
-          BlocProvider.of<FreezeBloc>(context).dispatch(UNFREEZE(null));
+          BlocProvider.of<FreezeBloc>(context).add(UNFREEZE(null));
         }
         break;
       case OverlayMenu.SAVE:
@@ -128,7 +128,7 @@ class OverlayMenuBar extends StatelessWidget {
           OverlayData data = OverlayData.fromKMLData(
               BlocProvider.of<FreezeBloc>(context).data);
           data.itemData = BlocProvider.of<PointBloc>(context).data;
-          BlocProvider.of<FreezeBloc>(context).dispatch(UNFREEZE(null));
+          BlocProvider.of<FreezeBloc>(context).add(UNFREEZE(null));
           onSaveInitiate(context, data);
         }
         break;
@@ -159,16 +159,16 @@ class OverlayMenuBar extends StatelessWidget {
       Navigator.of(context).pop();
       Toast.show(
         'KML successfully saved in your private directory.',
-        context,
-        duration: Toast.LENGTH_LONG,
-        gravity: Toast.BOTTOM,
+        textStyle: context,
+        duration: Toast.lengthLong,
+        gravity: Toast.bottom,
       );
     } catch (e) {
       Toast.show(
         'Some error occured. Please try again.',
-        context,
-        duration: Toast.LENGTH_LONG,
-        gravity: Toast.BOTTOM,
+        textStyle: context,
+        duration: Toast.lengthLong,
+        gravity: Toast.bottom,
       );
     }
   }
@@ -190,15 +190,15 @@ class OverlayMenuBar extends StatelessWidget {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('Enter the name of module to be saved.',
-              style: Theme.of(context).textTheme.title),
+              style: Theme.of(context).textTheme.titleMedium),
           actions: <Widget>[
-            FlatButton(
+            TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: Text('Cancel', style: Theme.of(context).textTheme.title),
+              child: Text('Cancel', style: Theme.of(context).textTheme.titleMedium),
             ),
-            FlatButton(
+            TextButton(
               onPressed: () => onSave(context, data, title, desc, url),
-              child: Text('Save', style: Theme.of(context).textTheme.title),
+              child: Text('Save', style: Theme.of(context).textTheme.titleMedium),
             ),
           ],
           content: SingleChildScrollView(
@@ -221,7 +221,7 @@ class OverlayMenuBar extends StatelessWidget {
                     labelText: "Title..",
                   ),
                   maxLines: 1,
-                  style: Theme.of(context).textTheme.title,
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
                 Padding(padding: EdgeInsets.all(4.0)),
                 TextField(
@@ -241,7 +241,7 @@ class OverlayMenuBar extends StatelessWidget {
                     labelText: "Description..",
                   ),
                   maxLines: 3,
-                  style: Theme.of(context).textTheme.title,
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
                 TextField(
                   controller: url_controller,
@@ -259,7 +259,7 @@ class OverlayMenuBar extends StatelessWidget {
                     labelText: "Image URL",
                   ),
                   maxLines: 1,
-                  style: Theme.of(context).textTheme.title,
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
               ],
             ),

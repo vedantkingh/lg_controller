@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:image/image.dart';
+import 'package:image/image.dart' hide ImageData;
 
 import 'package:lg_controller/src/menu/MainMenu.dart';
 import 'package:lg_controller/src/menu/POINavBarMenu.dart';

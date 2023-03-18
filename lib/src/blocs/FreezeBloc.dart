@@ -23,7 +23,7 @@ class FreezeBloc extends Bloc<OverlayEvent, OverlaysState> {
       zoom: 0,
       tilt: 0);
 
-  FreezeBloc(this.pointbloc);
+  FreezeBloc(this.pointbloc) : super(null);
 
   @override
   Stream<OverlaysState> mapEventToState(OverlayEvent event) async* {
@@ -32,7 +32,7 @@ class FreezeBloc extends Bloc<OverlayEvent, OverlaysState> {
       yield FrozenState(event.menu);
     } else if (event is UNFREEZE) {
       if (event.data != null) data = event.data;
-      pointbloc.dispatch(CLEAR_EVENT());
+      pointbloc.add(CLEAR_EVENT());
       yield UnfrozenState();
     }
   }

@@ -60,9 +60,9 @@ class _ProfileContentState extends State<ProfileContent> {
                         ),
                         (admin)
                             ? Text('Admin',
-                                style: Theme.of(context).textTheme.title)
+                                style: Theme.of(context).textTheme.titleMedium)
                             : Text('User',
-                                style: Theme.of(context).textTheme.title),
+                                style: Theme.of(context).textTheme.titleMedium),
                       ],
                     ),
                   ),
@@ -77,7 +77,7 @@ class _ProfileContentState extends State<ProfileContent> {
                                   color: Colors.black87,
                                 ),
                                 onPressed: () => setAdmin(false))
-                            : FlatButton(
+                            : TextButton(
                                 onPressed: () {
                                   showDialog(
                                     barrierDismissible: false,
@@ -89,7 +89,7 @@ class _ProfileContentState extends State<ProfileContent> {
                                   );
                                 },
                                 child: Text('Login',
-                                    style: Theme.of(context).textTheme.title),
+                                    style: Theme.of(context).textTheme.titleMedium),
                               ),
                       ]),
                 ],
@@ -167,16 +167,16 @@ class _ProfileContentState extends State<ProfileContent> {
       SQLDatabase().insertInTable(POINavBarMenu.PRIVATE_1.title, list);
       Toast.show(
         'KML successfully saved in your private directory.',
-        context,
-        duration: Toast.LENGTH_LONG,
-        gravity: Toast.BOTTOM,
+        textStyle: context,
+        duration: Toast.lengthLong,
+        gravity: Toast.bottom,
       );
     } catch (e) {
       Toast.show(
         'Error occured in sharing module. Please retry.',
-        context,
-        duration: Toast.LENGTH_LONG,
-        gravity: Toast.BOTTOM,
+        textStyle: context,
+        duration: Toast.lengthLong,
+        gravity: Toast.bottom,
       );
     }
     Navigator.of(context).pop();
@@ -263,16 +263,16 @@ class PrivateData extends StatelessWidget {
     if (status)
       Toast.show(
         'Successfully uploaded.',
-        context,
-        duration: Toast.LENGTH_SHORT,
-        gravity: Toast.BOTTOM,
+        textStyle: context,
+        duration: Toast.lengthShort,
+        gravity: Toast.bottom,
       );
     else
       Toast.show(
         'Some error occured. Please try again.',
-        context,
-        duration: Toast.LENGTH_SHORT,
-        gravity: Toast.BOTTOM,
+        textStyle: context,
+        duration: Toast.lengthShort,
+        gravity: Toast.bottom,
       );
     Navigator.of(context).pop();
   }
@@ -302,40 +302,39 @@ class _AdminAccessDialogState extends State<AdminAccessDialog> {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text('Please enter admin passkey.',
-          style: Theme.of(context).textTheme.title),
+          style: Theme.of(context).textTheme.titleMedium),
       actions: <Widget>[
-        FlatButton(
+        TextButton(
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: Text('Cancel', style: Theme.of(context).textTheme.title),
+          child: Text('Cancel', style: Theme.of(context).textTheme.titleMedium),
         ),
-        FlatButton(
+        TextButton(
           onPressed: () {
             if (verifyPassCode(passkey_controller.text))
               widget.onComplete();
             else
               Toast.show(
                 'Invalid pass code.',
-                context,
-                duration: Toast.LENGTH_SHORT,
-                gravity: Toast.BOTTOM,
+                textStyle: context,
+                duration: Toast.lengthShort,
+                gravity: Toast.bottom,
               );
             Navigator.of(context).pop();
           },
-          child: Text('Save', style: Theme.of(context).textTheme.title),
+          child: Text('Save', style: Theme.of(context).textTheme.titleMedium),
         ),
       ],
       content: SingleChildScrollView(
         child: Container(
           width: 200 + 200 * 0.8 * (SizeScaling.getWidthScaling() - 1),
           child: TextFormField(
-            key: pass_key,
+            autovalidateMode: AutovalidateMode.always, key: pass_key,
             controller: passkey_controller,
             validator: (value) {
               if (value.length == 0) return 'Enter a valid value.';
             },
-            autovalidate: true,
             keyboardType: TextInputType.number,
             textInputAction: TextInputAction.done,
             autocorrect: true,
@@ -343,7 +342,7 @@ class _AdminAccessDialogState extends State<AdminAccessDialog> {
               labelText: "Passcode",
             ),
             maxLines: 1,
-            style: Theme.of(context).textTheme.title,
+            style: Theme.of(context).textTheme.titleMedium,
           ),
         ),
       ),

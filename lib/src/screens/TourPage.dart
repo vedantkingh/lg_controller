@@ -23,7 +23,7 @@ class TourPage extends StatefulWidget {
 }
 
 class _TourPageState extends State<TourPage> {
-  final NavBarBloc nvBloc = NavBarBloc();
+  final NavBarBloc nvBloc = NavBarBloc(RecentlyState());
   final KMLFilesBloc fBloc =
       KMLFilesBloc(FileRequests(), SQLDatabase(), MainMenu.TOURS);
 
@@ -43,10 +43,12 @@ class _TourPageState extends State<TourPage> {
                   child: TitleBar(MainMenu.TOURS),
                 ),
                 Expanded(
-                  child: BlocProviderTree(
-                    blocProviders: [
-                      BlocProvider<NavBarBloc>(bloc: nvBloc),
-                      BlocProvider<KMLFilesBloc>(bloc: fBloc),
+                  child: MultiBlocProvider(
+                    providers: [
+                      BlocProvider<NavBarBloc>(
+                          create: (BuildContext context) => nvBloc),
+                      BlocProvider<KMLFilesBloc>(
+                          create: (BuildContext context) => fBloc),
                     ],
                     child: Container(
                       padding: EdgeInsets.fromLTRB(0, 8, 8, 0),
@@ -96,9 +98,9 @@ class _TourPageState extends State<TourPage> {
 class SearchWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SearchBar(
-        (() => BlocProvider.of<NavBarBloc>(context).dispatch(RECENTLY())),
+        (() => BlocProvider.of<NavBarBloc>(context).add(RECENTLY())),
         ((searchText) => BlocProvider.of<NavBarBloc>(context)
-            .dispatch(SEARCH(searchText, MainMenu.TOURS))),
+            .add(SEARCH(searchText, MainMenu.TOURS))),
         () => {});
   }
 }

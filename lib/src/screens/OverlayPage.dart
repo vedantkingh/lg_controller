@@ -48,10 +48,10 @@ class _OverlayPageState extends State<OverlayPage> {
                   child: TitleBar(MainMenu.OVERLAY),
                 ),
                 Expanded(
-                  child: BlocProviderTree(
-                    blocProviders: [
-                      BlocProvider<FreezeBloc>(bloc: fBloc),
-                      BlocProvider<PointBloc>(bloc: pBloc),
+                  child: MultiBlocProvider(
+                    providers: [
+                      BlocProvider<FreezeBloc>(create: (BuildContext context)=>fBloc),
+                      BlocProvider<PointBloc>(create: (BuildContext context)=>pBloc),
                     ],
                     child: Container(
                       padding:
@@ -99,7 +99,7 @@ class _OverlayPageState extends State<OverlayPage> {
                                                 onPressed: () =>
                                                     BlocProvider.of<PageBloc>(
                                                             context)
-                                                        .dispatch(OVERLAY()),
+                                                        .add(OVERLAY()),
                                               ),
                                               shape: RoundedRectangleBorder(
                                                   borderRadius:
@@ -129,8 +129,8 @@ class _OverlayPageState extends State<OverlayPage> {
 
   @override
   void dispose() {
-    pBloc.dispose();
-    fBloc.dispose();
+    pBloc.close();
+    fBloc.close();
     super.dispose();
   }
 }

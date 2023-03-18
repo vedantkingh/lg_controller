@@ -69,7 +69,7 @@ class SearchBar extends StatelessWidget {
                             fontWeight: FontWeight.w300, color: Colors.black54),
                       ),
                       maxLines: 1,
-                      style: Theme.of(context).textTheme.title,
+                      style: Theme.of(context).textTheme.titleMedium,
                     ),
                   ),
                 ),

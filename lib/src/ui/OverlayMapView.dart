@@ -50,7 +50,7 @@ class OverlayMapView extends StatelessWidget {
 
   Widget build(BuildContext context) {
     getInitialData();
-    return BlocBuilder<OverlayEvent, OverlaysState>(
+    return BlocBuilder(
         bloc: BlocProvider.of<FreezeBloc>(context),
         builder: (BuildContext context, OverlaysState state) {
           if (state is FrozenState) {
@@ -60,11 +60,11 @@ class OverlayMapView extends StatelessWidget {
             unfreeze = true;
             menu = OverlayMenu.PAN;
           }
-          return BlocBuilder<PointEvent, PointState>(
+          return BlocBuilder(
               bloc: BlocProvider.of<PointBloc>(context),
               builder: (BuildContext context, PointState state) {
                 if (state is CompletedState) {
-                  BlocProvider.of<FreezeBloc>(context).dispatch(UNFREEZE(null));
+                  BlocProvider.of<FreezeBloc>(context).add(UNFREEZE(null));
                 } else if (state is ProcessingState) {
                   if (state.data is LineData) {
                     markers[MarkerId(state.data.id)] = new Marker(
@@ -74,7 +74,7 @@ class OverlayMapView extends StatelessWidget {
                       position: (state.data as LineData).points[0].point,
                       zIndex: 10,
                       icon:
-                          BitmapDescriptor.fromAsset("image_assets/place.png"),
+                          BitmapDescriptor.defaultMarker,
                     );
                   } else if (state.data is PolygonData) {
                     for (PointData i in (state.data as PolygonData).points)
@@ -92,8 +92,7 @@ class OverlayMapView extends StatelessWidget {
                                 .toString()),
                         position: i.point,
                         zIndex: 10,
-                        icon: BitmapDescriptor.fromAsset(
-                            "image_assets/place.png"),
+                        icon: BitmapDescriptor.defaultMarker,
                       );
                   }
                 } else if (state is UninitializedState) {
@@ -114,13 +113,13 @@ class OverlayMapView extends StatelessWidget {
                                         item.id == data.id));
                                 state.data.add(data);
                                 BlocProvider.of<PointBloc>(context)
-                                    .dispatch(MODIFY_EVENT());
+                                    .add(MODIFY_EVENT());
                               }, (data) {
                                 state.data.removeWhere((item) =>
                                     (item is PlacemarkData &&
                                         item.id == data.id));
                                 BlocProvider.of<PointBloc>(context)
-                                    .dispatch(MODIFY_EVENT());
+                                    .add(MODIFY_EVENT());
                               });
                             }),
                         consumeTapEvents: true,
@@ -146,12 +145,12 @@ class OverlayMapView extends StatelessWidget {
                                     (item is LineData && item.id == data.id));
                                 state.data.add(data);
                                 BlocProvider.of<PointBloc>(context)
-                                    .dispatch(MODIFY_EVENT());
+                                    .add(MODIFY_EVENT());
                               }, (OverlayItem data) {
                                 state.data.removeWhere((item) =>
                                     (item is LineData && item.id == data.id));
                                 BlocProvider.of<PointBloc>(context)
-                                    .dispatch(MODIFY_EVENT());
+                                    .add(MODIFY_EVENT());
                               });
                             }),
                         consumeTapEvents: true,
@@ -172,12 +171,12 @@ class OverlayMapView extends StatelessWidget {
                                     (item is ImageData && item.id == data.id));
                                 state.data.add(data);
                                 BlocProvider.of<PointBloc>(context)
-                                    .dispatch(MODIFY_EVENT());
+                                    .add(MODIFY_EVENT());
                               }, (OverlayItem data) {
                                 state.data.removeWhere((item) =>
                                     (item is ImageData && item.id == data.id));
                                 BlocProvider.of<PointBloc>(context)
-                                    .dispatch(MODIFY_EVENT());
+                                    .add(MODIFY_EVENT());
                               });
                             }),
                         consumeTapEvents: true,
@@ -203,13 +202,13 @@ class OverlayMapView extends StatelessWidget {
                                         item.id == data.id));
                                 state.data.add(data);
                                 BlocProvider.of<PointBloc>(context)
-                                    .dispatch(MODIFY_EVENT());
+                                    .add(MODIFY_EVENT());
                               }, (OverlayItem data) {
                                 state.data.removeWhere((item) =>
                                     (item is PolygonData &&
                                         item.id == data.id));
                                 BlocProvider.of<PointBloc>(context)
-                                    .dispatch(MODIFY_EVENT());
+                                    .add(MODIFY_EVENT());
                               });
                             }),
                         consumeTapEvents: true,
@@ -264,13 +263,13 @@ class OverlayMapView extends StatelessWidget {
         bearing: current.bearing,
         zoom: current.zoom,
         tilt: current.tilt);
-    BlocProvider.of<FreezeBloc>(context).dispatch(UNFREEZE(data));
+    BlocProvider.of<FreezeBloc>(context).add(UNFREEZE(data));
     OSCActions().sendModule(ModuleType.GESTURE, jsonEncode(data));
   }
 
   /// Register tap action.
   sendPoint(context, LatLng point) {
-    BlocProvider.of<PointBloc>(context).dispatch(TAP_EVENT(point, menu));
+    BlocProvider.of<PointBloc>(context).add(TAP_EVENT(point, menu));
   }
 
   getInitialData() async {

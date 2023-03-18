@@ -33,7 +33,7 @@ class NavBar extends StatelessWidget {
       ),
     );
     list.add(
-      Text("CATEGORIES : ", style: Theme.of(context).textTheme.body2),
+      Text("CATEGORIES : ", style: Theme.of(context).textTheme.bodyMedium),
     );
     list.add(
       SizedBox(
@@ -72,7 +72,7 @@ class NavBar extends StatelessWidget {
     for (var ic in labels) {
       list.add(
         Container(
-          child: BlocBuilder<NavBarEvent, NavBarState>(
+          child: BlocBuilder(
             bloc: BlocProvider.of<NavBarBloc>(context),
             builder: (BuildContext context, NavBarState state) {
               if (ic.title.compareTo(state.toString()) == 0) {
@@ -84,7 +84,7 @@ class NavBar extends StatelessWidget {
                       minWidth: 88 + 44 * (SizeScaling.getWidthScaling() - 1)),
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   child:
-                      Text(ic.title, style: Theme.of(context).textTheme.body2),
+                      Text(ic.title, style: Theme.of(context).textTheme.bodyMedium),
                   splashColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                 );
@@ -92,7 +92,7 @@ class NavBar extends StatelessWidget {
                 return RawMaterialButton(
                   onPressed: () => labelSelected(ic, context),
                   child:
-                      Text(ic.title, style: Theme.of(context).textTheme.body1),
+                      Text(ic.title, style: Theme.of(context).textTheme.bodyLarge),
                   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                   constraints: BoxConstraints(
                       minHeight: 36,
@@ -123,32 +123,32 @@ class NavBar extends StatelessWidget {
       switch (ic) {
         case TourNavBarMenu.RECENTLY_VIEWED:
           {
-            BlocProvider.of<NavBarBloc>(context).dispatch(RECENTLY());
+            BlocProvider.of<NavBarBloc>(context).add(RECENTLY());
           }
           break;
         case TourNavBarMenu.CATEGORY_6:
           {
-            BlocProvider.of<NavBarBloc>(context).dispatch(CATEGORY_6());
+            BlocProvider.of<NavBarBloc>(context).add(CATEGORY_6());
           }
           break;
         case TourNavBarMenu.CATEGORY_7:
           {
-            BlocProvider.of<NavBarBloc>(context).dispatch(CATEGORY_7());
+            BlocProvider.of<NavBarBloc>(context).add(CATEGORY_7());
           }
           break;
         case TourNavBarMenu.CATEGORY_8:
           {
-            BlocProvider.of<NavBarBloc>(context).dispatch(CATEGORY_8());
+            BlocProvider.of<NavBarBloc>(context).add(CATEGORY_8());
           }
           break;
         case TourNavBarMenu.CATEGORY_9:
           {
-            BlocProvider.of<NavBarBloc>(context).dispatch(CATEGORY_9());
+            BlocProvider.of<NavBarBloc>(context).add(CATEGORY_9());
           }
           break;
         case TourNavBarMenu.PRIVATE_2:
           {
-            BlocProvider.of<NavBarBloc>(context).dispatch(PRIVATE_2());
+            BlocProvider.of<NavBarBloc>(context).add(PRIVATE_2());
           }
           break;
         default:
@@ -158,32 +158,32 @@ class NavBar extends StatelessWidget {
       switch (ic) {
         case POINavBarMenu.RECENTLY_VIEWED:
           {
-            BlocProvider.of<NavBarBloc>(context).dispatch(RECENTLY());
+            BlocProvider.of<NavBarBloc>(context).add(RECENTLY());
           }
           break;
         case POINavBarMenu.CATEGORY_1:
           {
-            BlocProvider.of<NavBarBloc>(context).dispatch(CATEGORY_1());
+            BlocProvider.of<NavBarBloc>(context).add(CATEGORY_1());
           }
           break;
         case POINavBarMenu.CATEGORY_2:
           {
-            BlocProvider.of<NavBarBloc>(context).dispatch(CATEGORY_2());
+            BlocProvider.of<NavBarBloc>(context).add(CATEGORY_2());
           }
           break;
         case POINavBarMenu.CATEGORY_3:
           {
-            BlocProvider.of<NavBarBloc>(context).dispatch(CATEGORY_3());
+            BlocProvider.of<NavBarBloc>(context).add(CATEGORY_3());
           }
           break;
         case POINavBarMenu.CATEGORY_4:
           {
-            BlocProvider.of<NavBarBloc>(context).dispatch(CATEGORY_4());
+            BlocProvider.of<NavBarBloc>(context).add(CATEGORY_4());
           }
           break;
         case POINavBarMenu.PRIVATE_1:
           {
-            BlocProvider.of<NavBarBloc>(context).dispatch(PRIVATE_1());
+            BlocProvider.of<NavBarBloc>(context).add(PRIVATE_1());
           }
           break;
         default:

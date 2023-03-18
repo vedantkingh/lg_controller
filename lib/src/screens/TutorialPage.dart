@@ -51,7 +51,7 @@ class _TutorialPageState extends State<TutorialPage> with NavigatorObserver {
         await setOSCParams();
       } else {
         if (!isFirstTime()) {
-          BlocProvider.of<PageBloc>(context).dispatch(HOME(null));
+          BlocProvider.of<PageBloc>(context).add(HOME(null));
         }
       }
     });
@@ -78,9 +78,10 @@ class _TutorialPageState extends State<TutorialPage> with NavigatorObserver {
       prefs.setInt('socket', socket);
       prefs.setInt('id', id);
       if (!isFirstTime()) {
-        BlocProvider.of<PageBloc>(context).dispatch(HOME(null));
+        BlocProvider.of<PageBloc>(context).add(HOME(null));
       }
     } catch (e) {
+      print(e);
       print('Error : In setting OSC params.');
     }
   }

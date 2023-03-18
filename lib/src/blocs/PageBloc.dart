@@ -7,8 +7,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 /// Bloc structure for handling page transitions.
 class PageBloc extends Bloc<PageEvent, PageState> {
+  PageBloc(PageState initialState) : super(initialState);
+
   /// Initial state of [PageBloc].
-  @override
   PageState get initialState => TutorialState();
 
   @override

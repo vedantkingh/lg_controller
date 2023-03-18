@@ -33,12 +33,12 @@ ThemeData testTheme() {
     ),
     fontFamily: 'RobotoMono',
     textTheme: TextTheme(
-      headline: TextStyle(
+      displayMedium: TextStyle(
           fontSize: 34, color: Colors.white, fontWeight: FontWeight.bold),
-      title: TextStyle(
+      titleMedium: TextStyle(
           fontSize: 16, color: Colors.black54, fontWeight: FontWeight.bold),
-      body1: TextStyle(fontSize: 10, color: Colors.white),
-      body2: TextStyle(
+      bodyLarge: TextStyle(fontSize: 10, color: Colors.white),
+      bodyMedium: TextStyle(
           fontSize: 12, color: Colors.white, fontWeight: FontWeight.bold),
     ),
   );

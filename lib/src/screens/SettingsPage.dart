@@ -39,7 +39,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
                           Text('Settings',
-                              style: Theme.of(context).textTheme.body2),
+                              style: Theme.of(context).textTheme.bodyMedium),
                           Padding(padding: EdgeInsets.all(8)),
                           Container(
                             width: 400 +

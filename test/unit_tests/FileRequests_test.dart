@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:googleapis/drive/v2.dart' as drive;
+import 'package:googleapis/drive/v2.dart';
 import 'package:lg_controller/src/gdrive/FileRequests.dart';
 import 'package:lg_controller/src/menu/MainMenu.dart';
 import 'package:lg_controller/src/menu/POINavBarMenu.dart';
@@ -9,7 +12,7 @@ import 'package:test/test.dart';
 
 class MockDriveApi extends Mock implements drive.DriveApi {}
 
-class MockFileResApi extends Mock implements drive.FilesResourceApi {}
+class MockFileResApi extends Mock implements drive.DrivesResource {}
 
 main() {
   group('fetchPost', () {
@@ -39,9 +42,9 @@ main() {
       fileList.items.add(new drive.File());
       fileList.nextPageToken = null;
 
-      when(client_dr.files).thenReturn(client_fra);
+      when(client_dr.files).thenReturn(client_fra as drive.FilesResource);
       when(client_fra.list(q: "test", pageToken: null, maxResults: 1))
-          .thenAnswer((_) async => fileList);
+          .thenAnswer((_) async => fileList as FutureOr<DriveList>);
 
       expect(await fr.searchFiles(client_dr, 1, "test"), fileList.items);
 
@@ -78,9 +81,9 @@ main() {
         })
       });
 
-      when(client_dr.files).thenReturn(client_fra);
+      when(client_dr.files).thenReturn(client_fra as drive.FilesResource);
       when(client_fra.list(q: anyNamed('q'), pageToken: null, maxResults: 1))
-          .thenAnswer((_) async => fileList);
+          .thenAnswer((_) async => fileList as FutureOr<DriveList>);
 
       expect(fileList.items.length, 1);
       expect(await fr.searchFiles(client_dr, 1, "test"), fileList.items);

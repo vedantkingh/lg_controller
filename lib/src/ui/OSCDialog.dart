@@ -37,11 +37,11 @@ class _OSCDialogState extends State<OSCDialog> {
       onWillPop: () => SystemNavigator.pop(),
       child: AlertDialog(
         title: Text('Please enter the name of module to be saved.',
-            style: Theme.of(context).textTheme.title),
+            style: Theme.of(context).textTheme.titleMedium),
         actions: <Widget>[
           (loading)
               ? CircularProgressIndicator()
-              : FlatButton(
+              : TextButton(
                   onPressed: () async {
                     setState(() {
                       loading = true;
@@ -57,7 +57,7 @@ class _OSCDialogState extends State<OSCDialog> {
                         loading = false;
                       });
                   },
-                  child: Text('Ok', style: Theme.of(context).textTheme.title),
+                  child: Text('Ok', style: Theme.of(context).textTheme.titleMedium),
                 ),
         ],
         content: SingleChildScrollView(
@@ -65,13 +65,12 @@ class _OSCDialogState extends State<OSCDialog> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
               TextFormField(
-                key: ip_key,
+                autovalidateMode: AutovalidateMode.always, key: ip_key,
                 controller: ip_controller,
                 validator: (value) {
                   if (value.length == 0 || value.split('.').length != 4)
                     return 'Enter a valid value.';
                 },
-                autovalidate: true,
                 keyboardType: TextInputType.numberWithOptions(decimal: true),
                 textInputAction: TextInputAction.next,
                 onFieldSubmitted: (val) {
@@ -82,18 +81,17 @@ class _OSCDialogState extends State<OSCDialog> {
                   labelText: "IP address",
                 ),
                 maxLines: 1,
-                style: Theme.of(context).textTheme.title,
+                style: Theme.of(context).textTheme.titleMedium,
               ),
               Padding(padding: EdgeInsets.all(4.0)),
               TextFormField(
-                key: soc_key,
+                autovalidateMode: AutovalidateMode.always, key: soc_key,
                 focusNode: soc_node,
                 controller: soc_controller,
                 validator: (value) {
                   if (value.length == 0 && int.tryParse(value) == null)
                     return 'Enter a valid value.';
                 },
-                autovalidate: true,
                 keyboardType: TextInputType.number,
                 textInputAction: TextInputAction.next,
                 onFieldSubmitted: (val) {
@@ -104,18 +102,17 @@ class _OSCDialogState extends State<OSCDialog> {
                   labelText: "Socket",
                 ),
                 maxLines: 1,
-                style: Theme.of(context).textTheme.title,
+                style: Theme.of(context).textTheme.titleMedium,
               ),
               Padding(padding: EdgeInsets.all(4.0)),
               TextFormField(
-                key: id_key,
+                autovalidateMode: AutovalidateMode.always, key: id_key,
                 focusNode: id_node,
                 controller: id_controller,
                 validator: (value) {
                   if (value.length == 0 && int.tryParse(value) == null)
                     return 'Enter a valid value.';
                 },
-                autovalidate: true,
                 keyboardType: TextInputType.number,
                 textInputAction: TextInputAction.next,
                 autocorrect: true,
@@ -123,7 +120,7 @@ class _OSCDialogState extends State<OSCDialog> {
                   labelText: "LG ID",
                 ),
                 maxLines: 1,
-                style: Theme.of(context).textTheme.title,
+                style: Theme.of(context).textTheme.titleMedium,
               ),
             ],
           ),

@@ -12,7 +12,7 @@ import 'package:lg_controller/src/utils/SizeScaling.dart';
 class KMLGridContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
-      child: BlocBuilder<NavBarEvent, NavBarState>(
+      child: BlocBuilder(
         bloc: BlocProvider.of<NavBarBloc>(context),
         builder: (BuildContext context, NavBarState state) {
           return GridContent(state);
@@ -30,13 +30,13 @@ class GridContent extends StatelessWidget {
   GridContent(this.choice);
 
   Widget build(BuildContext context) {
-    return BlocBuilder<KMLFilesEvent, KMLFilesState>(
+    return BlocBuilder(
         bloc: BlocProvider.of<KMLFilesBloc>(context),
         builder: (BuildContext context, KMLFilesState state) {
           if (state is LoadingState) {
-            return Text("Loading..", style: Theme.of(context).textTheme.body1);
+            return Text("Loading..", style: Theme.of(context).textTheme.bodyLarge);
           } else if (state is ErrorState) {
-            return Text("Error.", style: Theme.of(context).textTheme.body1);
+            return Text("Error.", style: Theme.of(context).textTheme.bodyLarge);
           } else if (state is LoadedState) {
             List<KMLData> content;
             if (choice is SearchState)
@@ -59,9 +59,9 @@ class GridContent extends StatelessWidget {
               },
             );
           } else {
-            BlocProvider.of<KMLFilesBloc>(context).dispatch(GET_FILES());
+            BlocProvider.of<KMLFilesBloc>(context).add(GET_FILES());
             return Text("Uninitialized..",
-                style: Theme.of(context).textTheme.body1);
+                style: Theme.of(context).textTheme.bodyLarge);
           }
         });
   }

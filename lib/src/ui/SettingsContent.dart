@@ -615,15 +615,15 @@ class _DefaultDataDialogState extends State<DefaultDataDialog> {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text('Please enter details for the default data.',
-          style: Theme.of(context).textTheme.title),
+          style: Theme.of(context).textTheme.titleMedium),
       actions: <Widget>[
-        FlatButton(
+        TextButton(
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: Text('Cancel', style: Theme.of(context).textTheme.title),
+          child: Text('Cancel', style: Theme.of(context).textTheme.titleMedium),
         ),
-        FlatButton(
+        TextButton(
           onPressed: () {
             KMLData data = new KMLData(
                 title: "Default",
@@ -636,7 +636,7 @@ class _DefaultDataDialogState extends State<DefaultDataDialog> {
             widget.onSave(data);
             Navigator.of(context).pop();
           },
-          child: Text('Save', style: Theme.of(context).textTheme.title),
+          child: Text('Save', style: Theme.of(context).textTheme.titleMedium),
         ),
       ],
       content: SingleChildScrollView(
@@ -649,12 +649,11 @@ class _DefaultDataDialogState extends State<DefaultDataDialog> {
                 Container(
                   width: 100 + 100 * 0.8 * (SizeScaling.getWidthScaling() - 1),
                   child: TextFormField(
-                    controller: lat_controller,
+                    autovalidateMode: AutovalidateMode.always, controller: lat_controller,
                     validator: (value) {
                       if (value.length == 0 && double.tryParse(value) != null)
                         return 'Enter a valid value.';
                     },
-                    autovalidate: true,
                     keyboardType: TextInputType.number,
                     textInputAction: TextInputAction.done,
                     autocorrect: true,
@@ -662,19 +661,18 @@ class _DefaultDataDialogState extends State<DefaultDataDialog> {
                       labelText: "Latitude",
                     ),
                     maxLines: 1,
-                    style: Theme.of(context).textTheme.title,
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
                 ),
                 Padding(padding: EdgeInsets.all(8.0)),
                 Container(
                   width: 100 + 100 * 0.8 * (SizeScaling.getWidthScaling() - 1),
                   child: TextFormField(
-                    controller: lgt_controller,
+                    autovalidateMode: AutovalidateMode.always, controller: lgt_controller,
                     validator: (value) {
                       if (value.length == 0 && double.tryParse(value) != null)
                         return 'Enter a valid value.';
                     },
-                    autovalidate: true,
                     keyboardType: TextInputType.number,
                     textInputAction: TextInputAction.next,
                     autocorrect: true,
@@ -682,7 +680,7 @@ class _DefaultDataDialogState extends State<DefaultDataDialog> {
                       labelText: "Longitude",
                     ),
                     maxLines: 1,
-                    style: Theme.of(context).textTheme.title,
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
                 ),
               ],
@@ -693,12 +691,11 @@ class _DefaultDataDialogState extends State<DefaultDataDialog> {
                 Container(
                   width: 100 + 100 * 0.8 * (SizeScaling.getWidthScaling() - 1),
                   child: TextFormField(
-                    controller: zoom_controller,
+                    autovalidateMode: AutovalidateMode.always, controller: zoom_controller,
                     validator: (value) {
                       if (value.length == 0 && double.tryParse(value) != null)
                         return 'Enter a valid value.';
                     },
-                    autovalidate: true,
                     keyboardType: TextInputType.number,
                     textInputAction: TextInputAction.done,
                     autocorrect: true,
@@ -706,19 +703,18 @@ class _DefaultDataDialogState extends State<DefaultDataDialog> {
                       labelText: "Zoom",
                     ),
                     maxLines: 1,
-                    style: Theme.of(context).textTheme.title,
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
                 ),
                 Padding(padding: EdgeInsets.all(8.0)),
                 Container(
                   width: 100 + 100 * 0.8 * (SizeScaling.getWidthScaling() - 1),
                   child: TextFormField(
-                    controller: bear_controller,
+                    autovalidateMode: AutovalidateMode.always, controller: bear_controller,
                     validator: (value) {
                       if (value.length == 0 && double.tryParse(value) != null)
                         return 'Enter a valid value.';
                     },
-                    autovalidate: true,
                     keyboardType: TextInputType.number,
                     textInputAction: TextInputAction.next,
                     autocorrect: true,
@@ -726,19 +722,18 @@ class _DefaultDataDialogState extends State<DefaultDataDialog> {
                       labelText: "Bearing",
                     ),
                     maxLines: 1,
-                    style: Theme.of(context).textTheme.title,
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
                 ),
                 Padding(padding: EdgeInsets.all(8.0)),
                 Container(
                   width: 100 + 100 * 0.8 * (SizeScaling.getWidthScaling() - 1),
                   child: TextFormField(
-                    controller: tilt_controller,
+                    autovalidateMode: AutovalidateMode.always, controller: tilt_controller,
                     validator: (value) {
                       if (value.length == 0 && double.tryParse(value) != null)
                         return 'Enter a valid value.';
                     },
-                    autovalidate: true,
                     keyboardType: TextInputType.number,
                     textInputAction: TextInputAction.done,
                     autocorrect: true,
@@ -746,7 +741,7 @@ class _DefaultDataDialogState extends State<DefaultDataDialog> {
                       labelText: "Tilt",
                     ),
                     maxLines: 1,
-                    style: Theme.of(context).textTheme.title,
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
                 ),
               ],

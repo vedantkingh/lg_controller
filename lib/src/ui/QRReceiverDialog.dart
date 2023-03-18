@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:get_ip/get_ip.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:dart_ipify/dart_ipify.dart';
 import 'package:lg_controller/src/osc/OSCActions.dart';
 import 'package:lg_controller/src/utils/SizeScaling.dart';
 
@@ -31,7 +31,7 @@ class _QRReceiverDialogState extends State<QRReceiverDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('Receive module.', style: Theme.of(context).textTheme.title),
+      title: Text('Receive module.', style: Theme.of(context).textTheme.titleMedium),
       content: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Center(
@@ -50,7 +50,7 @@ class _QRReceiverDialogState extends State<QRReceiverDialog> {
 
   /// Set data for QR code.
   setData() async {
-    data = await GetIp.ipAddress + ',' + data;
+    data = await Ipify.ipv4() + ',' + data;
     setState(() {});
   }
 }

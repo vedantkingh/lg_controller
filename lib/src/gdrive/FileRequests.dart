@@ -21,7 +21,7 @@ class FileRequests {
   ''';
 
   /// Drive scope required for getting file data.
-  final scopes = [drive.DriveApi.DriveScope];
+  final scopes = [drive.DriveApi.driveScope];
 
   /// To get the KML data for the modules.
   Future<Map<String, List<KMLData>>> getFiles(MainMenu pagestate) async {

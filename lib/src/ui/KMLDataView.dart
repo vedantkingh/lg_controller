@@ -85,7 +85,7 @@ class KMLDataView extends StatelessWidget {
                       alignment: Alignment.topRight,
                       child: IconButton(
                         onPressed: () => BlocProvider.of<PageBloc>(context)
-                            .dispatch(CLEARDATA()),
+                            .add(CLEARDATA()),
                         iconSize:
                             24 + 24 * 0.5 * (SizeScaling.getWidthScaling() - 1),
                         icon: Icon(

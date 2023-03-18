@@ -23,7 +23,7 @@ class _AttributeDialogState extends State<AttributeDialog> {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text('Slect the number of vertices',
-          style: Theme.of(context).textTheme.title),
+          style: Theme.of(context).textTheme.titleMedium),
       content: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Center(
@@ -41,7 +41,7 @@ class _AttributeDialogState extends State<AttributeDialog> {
                     return DropdownMenuItem<int>(
                       value: value,
                       child: Text(value.toString(),
-                          style: Theme.of(context).textTheme.title),
+                          style: Theme.of(context).textTheme.titleMedium),
                     );
                   }).toList(),
                 ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lg_controller/src/blocs/PageBloc.dart';
+import 'package:lg_controller/src/menu/MainMenu.dart';
 import 'package:lg_controller/src/screens/GuidePage.dart';
 import 'package:lg_controller/src/screens/HomePage.dart';
 import 'package:lg_controller/src/screens/OverlayPage.dart';
@@ -18,6 +19,7 @@ import 'package:toast/toast.dart';
 
 /// Entry point of the application.
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.landscapeRight,
     DeviceOrientation.landscapeLeft,
@@ -46,23 +48,23 @@ class MyApp extends StatefulWidget {
 /// State class of root widget.
 class _MyAppState extends State<MyApp> {
   /// Instance of [PageBloc] for handling screen navigation.
-  PageBloc pageBloc = PageBloc();
+  PageBloc pageBloc = PageBloc(TutorialState());
 
   @override
   void initState() {
-    OSCActions().receiveFeedback((data)=> Toast.show(
-      'Some error occured in OSC channel. Please retry.',
-      context,
-      duration: Toast.LENGTH_LONG,
-      gravity: Toast.BOTTOM,
-    ));
+    OSCActions().receiveFeedback((data) => Toast.show(
+          'Some error occured in OSC channel. Please retry.',
+          textStyle: context,
+          duration: Toast.lengthLong,
+          gravity: Toast.bottom,
+        ));
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider<PageBloc>(
-      bloc: pageBloc,
+      create: (BuildContext context) => pageBloc,
       child: MaterialApp(
         title: 'LG Controller',
         routes: routes,
@@ -142,7 +144,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void dispose() {
     super.dispose();
-    pageBloc.dispose();
+    pageBloc.close();
   }
 
   /// Returns the base theme used for the app.
@@ -157,17 +159,17 @@ class _MyAppState extends State<MyApp> {
       ),
       fontFamily: 'RobotoMono',
       textTheme: TextTheme(
-        headline: TextStyle(
+        displayLarge: TextStyle(
             fontSize: 34 + 34 * 0.8 * (scaling_width - 1),
             color: Colors.white,
             fontWeight: FontWeight.bold),
-        title: TextStyle(
+        titleMedium: TextStyle(
             fontSize: 16 + 16 * 0.8 * (scaling_width - 1),
             color: Colors.black54,
             fontWeight: FontWeight.bold),
-        body1: TextStyle(
+        bodyLarge: TextStyle(
             fontSize: 12 + 12 * (scaling_width - 1), color: Colors.white),
-        body2: TextStyle(
+        bodyMedium: TextStyle(
             fontSize: 16 + 16 * 0.8 * (scaling_width - 1),
             color: Colors.white,
             fontWeight: FontWeight.bold),

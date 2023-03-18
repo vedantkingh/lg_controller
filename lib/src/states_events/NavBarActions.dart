@@ -6,7 +6,11 @@ import 'package:lg_controller/src/models/KMLData.dart';
 abstract class NavBarEvent extends Equatable {}
 
 /// Recently viewed event.
-class RECENTLY extends NavBarEvent {}
+class RECENTLY extends NavBarEvent {
+  @override
+  // TODO: implement props
+  List<Object> get props => throw UnimplementedError();
+}
 
 /// Search bar event.
 class SEARCH extends NavBarEvent {
@@ -17,37 +21,81 @@ class SEARCH extends NavBarEvent {
   final MainMenu pagestate;
 
   SEARCH(this.searchText, this.pagestate);
+
+  @override
+  // TODO: implement props
+  List<Object> get props => throw UnimplementedError();
 }
 
 /// Category_1 event.
-class CATEGORY_1 extends NavBarEvent {}
+class CATEGORY_1 extends NavBarEvent {
+  @override
+  // TODO: implement props
+  List<Object> get props => throw UnimplementedError();
+}
 
 /// Category_2 event.
-class CATEGORY_2 extends NavBarEvent {}
+class CATEGORY_2 extends NavBarEvent {
+  @override
+  // TODO: implement props
+  List<Object> get props => throw UnimplementedError();
+}
 
 /// Category_3 event.
-class CATEGORY_3 extends NavBarEvent {}
+class CATEGORY_3 extends NavBarEvent {
+  @override
+  // TODO: implement props
+  List<Object> get props => throw UnimplementedError();
+}
 
 /// Category_4 event.
-class CATEGORY_4 extends NavBarEvent {}
+class CATEGORY_4 extends NavBarEvent {
+  @override
+  // TODO: implement props
+  List<Object> get props => throw UnimplementedError();
+}
 
 /// Private_1 event.
-class PRIVATE_1 extends NavBarEvent {}
+class PRIVATE_1 extends NavBarEvent {
+  @override
+  // TODO: implement props
+  List<Object> get props => throw UnimplementedError();
+}
 
 /// Category_6 event.
-class CATEGORY_6 extends NavBarEvent {}
+class CATEGORY_6 extends NavBarEvent {
+  @override
+  // TODO: implement props
+  List<Object> get props => throw UnimplementedError();
+}
 
 /// Category_7 event.
-class CATEGORY_7 extends NavBarEvent {}
+class CATEGORY_7 extends NavBarEvent {
+  @override
+  // TODO: implement props
+  List<Object> get props => throw UnimplementedError();
+}
 
 /// Category_8 event.
-class CATEGORY_8 extends NavBarEvent {}
+class CATEGORY_8 extends NavBarEvent {
+  @override
+  // TODO: implement props
+  List<Object> get props => throw UnimplementedError();
+}
 
 /// Category_9 event.
-class CATEGORY_9 extends NavBarEvent {}
+class CATEGORY_9 extends NavBarEvent {
+  @override
+  // TODO: implement props
+  List<Object> get props => throw UnimplementedError();
+}
 
 /// Private_10 event.
-class PRIVATE_2 extends NavBarEvent {}
+class PRIVATE_2 extends NavBarEvent {
+  @override
+  // TODO: implement props
+  List<Object> get props => throw UnimplementedError();
+}
 
 /// Bloc states for Nav bar.
 abstract class NavBarState {}

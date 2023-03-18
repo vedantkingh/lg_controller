@@ -38,7 +38,7 @@ class AppTitle extends StatelessWidget {
                             88 + 32 * (SizeScaling.getWidthScaling() - 1)),
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     child: Text('LG Controller',
-                        style: Theme.of(context).textTheme.body2),
+                        style: Theme.of(context).textTheme.bodyMedium),
                     splashColor: Colors.transparent,
                     highlightColor: Colors.transparent,
                   ),

@@ -6,6 +6,8 @@ import 'package:lg_controller/src/states_events/NavBarActions.dart';
 
 /// Bloc structure for handling Nav Bar on [POIPage].
 class NavBarBloc extends Bloc<NavBarEvent, NavBarState> {
+  NavBarBloc(NavBarState initialState) : super(initialState);
+
   /// Initial state of [NavBarBloc].
   @override
   NavBarState get initialState => RecentlyState();

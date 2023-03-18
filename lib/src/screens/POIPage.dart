@@ -23,7 +23,7 @@ class POIPage extends StatefulWidget {
 }
 
 class _POIPageState extends State<POIPage> {
-  final NavBarBloc nvBloc = NavBarBloc();
+  final NavBarBloc nvBloc = NavBarBloc(RecentlyState());
   final KMLFilesBloc fBloc =
       KMLFilesBloc(FileRequests(), SQLDatabase(), MainMenu.POI);
 
@@ -43,10 +43,12 @@ class _POIPageState extends State<POIPage> {
                   child: TitleBar(MainMenu.POI),
                 ),
                 Expanded(
-                  child: BlocProviderTree(
-                    blocProviders: [
-                      BlocProvider<NavBarBloc>(bloc: nvBloc),
-                      BlocProvider<KMLFilesBloc>(bloc: fBloc),
+                  child: MultiBlocProvider(
+                    providers: [
+                      BlocProvider<NavBarBloc>(
+                          create: (BuildContext context) => nvBloc),
+                      BlocProvider<KMLFilesBloc>(
+                          create: (BuildContext context) => fBloc),
                     ],
                     child: Container(
                       padding: EdgeInsets.fromLTRB(0, 8, 8, 0),
@@ -93,8 +95,8 @@ class _POIPageState extends State<POIPage> {
 
   @override
   void dispose() {
-    nvBloc.dispose();
-    fBloc.dispose();
+    nvBloc.close();
+    fBloc.close();
     super.dispose();
   }
 }
@@ -103,9 +105,9 @@ class _POIPageState extends State<POIPage> {
 class SearchWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SearchBar(
-        (() => BlocProvider.of<NavBarBloc>(context).dispatch(RECENTLY())),
+        (() => BlocProvider.of<NavBarBloc>(context).add(RECENTLY())),
         ((searchText) => BlocProvider.of<NavBarBloc>(context)
-            .dispatch(SEARCH(searchText, MainMenu.POI))),
+            .add(SEARCH(searchText, MainMenu.POI))),
         () => {});
   }
 }

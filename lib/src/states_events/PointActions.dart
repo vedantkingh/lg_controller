@@ -15,13 +15,25 @@ class TAP_EVENT extends PointEvent {
   OverlayMenu menu;
 
   TAP_EVENT(this.point, this.menu);
+
+  @override
+  // TODO: implement props
+  List<Object> get props => throw UnimplementedError();
 }
 
 /// Event for clearing tap gesture.
-class CLEAR_EVENT extends PointEvent {}
+class CLEAR_EVENT extends PointEvent {
+  @override
+  // TODO: implement props
+  List<Object> get props => throw UnimplementedError();
+}
 
 /// Event for clearing tap gesture.
-class MODIFY_EVENT extends PointEvent {}
+class MODIFY_EVENT extends PointEvent {
+  @override
+  // TODO: implement props
+  List<Object> get props => throw UnimplementedError();
+}
 
 /// Bloc states for handling tap gestures.
 abstract class PointState extends Equatable {}
@@ -32,10 +44,18 @@ class UninitializedState extends PointState {
   List<OverlayItem> data;
 
   UninitializedState(this.data);
+
+  @override
+  // TODO: implement props
+  List<Object> get props => throw UnimplementedError();
 }
 
 /// State when error has occured.
-class ErrorState extends PointState {}
+class ErrorState extends PointState {
+  @override
+  // TODO: implement props
+  List<Object> get props => throw UnimplementedError();
+}
 
 /// State for processing data in background.
 class ProcessingState extends PointState {
@@ -43,9 +63,17 @@ class ProcessingState extends PointState {
   OverlayItem data;
 
   ProcessingState(this.data);
+
+  @override
+  // TODO: implement props
+  List<Object> get props => throw UnimplementedError();
 }
 
 /// State of completion of drawing overlay feature.
 class CompletedState extends PointState {
   CompletedState();
+
+  @override
+  // TODO: implement props
+  List<Object> get props => throw UnimplementedError();
 }

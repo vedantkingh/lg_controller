@@ -11,6 +11,10 @@ class FREEZE extends OverlayEvent {
   OverlayMenu menu;
 
   FREEZE(this.menu);
+
+  @override
+  // TODO: implement props
+  List<Object> get props => throw UnimplementedError();
 }
 
 /// Event to unfreeze map.
@@ -19,6 +23,10 @@ class UNFREEZE extends OverlayEvent {
   KMLData data;
 
   UNFREEZE(this.data);
+
+  @override
+  // TODO: implement props
+  List<Object> get props => throw UnimplementedError();
 }
 
 /// Bloc states for handling map events.
@@ -30,7 +38,15 @@ class FrozenState extends OverlaysState {
   OverlayMenu menu;
 
   FrozenState(this.menu);
+
+  @override
+  // TODO: implement props
+  List<Object> get props => throw UnimplementedError();
 }
 
 /// Initial state.
-class UnfrozenState extends OverlaysState {}
+class UnfrozenState extends OverlaysState {
+  @override
+  // TODO: implement props
+  List<Object> get props => throw UnimplementedError();
+}

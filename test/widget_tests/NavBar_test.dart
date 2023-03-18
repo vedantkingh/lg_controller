@@ -4,15 +4,18 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:lg_controller/src/blocs/NavBarBloc.dart';
 import 'package:lg_controller/src/menu/MainMenu.dart';
 import 'package:lg_controller/src/menu/POINavBarMenu.dart';
+import 'package:lg_controller/src/states_events/NavBarActions.dart';
 import 'package:lg_controller/src/ui/NavBar.dart';
 
 void main() {
   for (var ic in POINavBarMenu.values()) {
     testWidgets('Nav menu bar ' + ic.title + ' component check',
         (WidgetTester tester) async {
-      Widget root = BlocProviderTree(
-        blocProviders: [
-          BlocProvider<NavBarBloc>(bloc: new NavBarBloc()),
+      Widget root = MultiBlocProvider(
+        providers: [
+          BlocProvider<NavBarBloc>(
+              create: (BuildContext context) =>
+                  new NavBarBloc(RecentlyState())),
         ],
         child: new NavBar(MainMenu.POI),
       );
@@ -35,15 +38,16 @@ void main() {
         await tester.tap(find.byWidget(option));
         await tester.pumpAndSettle();
         Text selected = option.child;
-        expect(selected.style.fontSize, testTheme().textTheme.body2.fontSize);
+        expect(
+            selected.style.fontSize, testTheme().textTheme.bodyMedium.fontSize);
         int j = 0;
         for (var ic_plain in POINavBarMenu.values()) {
           if (ic_tap != ic_plain) {
             RawMaterialButton unselect =
                 find.byType(RawMaterialButton).evaluate().toList()[0].widget;
             Text selected = unselect.child;
-            expect(
-                selected.style.fontSize, testTheme().textTheme.body1.fontSize);
+            expect(selected.style.fontSize,
+                testTheme().textTheme.bodyLarge.fontSize);
           }
           j = j + 1;
         }
@@ -70,12 +74,12 @@ ThemeData testTheme() {
     ),
     fontFamily: 'RobotoMono',
     textTheme: TextTheme(
-      headline: TextStyle(
+      displayMedium: TextStyle(
           fontSize: 34, color: Colors.white, fontWeight: FontWeight.bold),
-      title: TextStyle(
+      titleMedium: TextStyle(
           fontSize: 16, color: Colors.black54, fontWeight: FontWeight.bold),
-      body1: TextStyle(fontSize: 12, color: Colors.white),
-      body2: TextStyle(
+      bodyLarge: TextStyle(fontSize: 12, color: Colors.white),
+      bodyMedium: TextStyle(
           fontSize: 12, color: Colors.white, fontWeight: FontWeight.bold),
     ),
   );

@@ -116,22 +116,22 @@ class _PropertiesDialogState extends State<PropertiesDialog> {
       onWillPop: () => SystemNavigator.pop(),
       child: AlertDialog(
         title: Text('Please enter details of the overlay.',
-            style: Theme.of(context).textTheme.title),
+            style: Theme.of(context).textTheme.titleMedium),
         actions: <Widget>[
-          FlatButton(
+          TextButton(
             onPressed: () {
               Navigator.of(context).pop();
             },
-            child: Text('Cancel', style: Theme.of(context).textTheme.title),
+            child: Text('Cancel', style: Theme.of(context).textTheme.titleMedium),
           ),
-          FlatButton(
+          TextButton(
             onPressed: () {
               widget.onDelete(widget.data);
               Navigator.of(context).pop();
             },
-            child: Text('Delete', style: Theme.of(context).textTheme.title),
+            child: Text('Delete', style: Theme.of(context).textTheme.titleMedium),
           ),
-          FlatButton(
+          TextButton(
             onPressed: () {
               if (widget.data is PlacemarkData) {
                 temp = PlacemarkData(
@@ -181,7 +181,7 @@ class _PropertiesDialogState extends State<PropertiesDialog> {
               widget.onSave(temp);
               Navigator.of(context).pop();
             },
-            child: Text('Save', style: Theme.of(context).textTheme.title),
+            child: Text('Save', style: Theme.of(context).textTheme.titleMedium),
           ),
         ],
         content: SingleChildScrollView(
@@ -273,11 +273,10 @@ class LabelLayer extends StatelessWidget {
         Container(
           width: 200 + 200 * 0.8 * (SizeScaling.getWidthScaling() - 1),
           child: TextFormField(
-            controller: title_controller,
+            autovalidateMode: AutovalidateMode.always, controller: title_controller,
             validator: (value) {
               if (value.length == 0) return 'Enter a valid value.';
             },
-            autovalidate: true,
             keyboardType: TextInputType.text,
             textInputAction: TextInputAction.done,
             autocorrect: true,
@@ -285,18 +284,17 @@ class LabelLayer extends StatelessWidget {
               labelText: "Title",
             ),
             maxLines: 1,
-            style: Theme.of(context).textTheme.title,
+            style: Theme.of(context).textTheme.titleMedium,
           ),
         ),
         Padding(padding: EdgeInsets.all(8.0)),
         Container(
           width: 200 + 200 * 0.8 * (SizeScaling.getWidthScaling() - 1),
           child: TextFormField(
-            controller: desc_controller,
+            autovalidateMode: AutovalidateMode.always, controller: desc_controller,
             validator: (value) {
               if (value.length == 0) return 'Enter a valid value.';
             },
-            autovalidate: true,
             keyboardType: TextInputType.text,
             textInputAction: TextInputAction.done,
             autocorrect: true,
@@ -304,7 +302,7 @@ class LabelLayer extends StatelessWidget {
               labelText: "Description",
             ),
             maxLines: 1,
-            style: Theme.of(context).textTheme.title,
+            style: Theme.of(context).textTheme.titleMedium,
           ),
         ),
       ],
@@ -325,12 +323,11 @@ class CoordsLayer extends StatelessWidget {
         Container(
           width: 100 + 100 * 0.8 * (SizeScaling.getWidthScaling() - 1),
           child: TextFormField(
-            controller: lat_controller,
+            autovalidateMode: AutovalidateMode.always, controller: lat_controller,
             validator: (value) {
               if (value.length == 0 && double.tryParse(value) != null)
                 return 'Enter a valid value.';
             },
-            autovalidate: true,
             keyboardType: TextInputType.number,
             textInputAction: TextInputAction.done,
             autocorrect: true,
@@ -338,19 +335,18 @@ class CoordsLayer extends StatelessWidget {
               labelText: "Latitude",
             ),
             maxLines: 1,
-            style: Theme.of(context).textTheme.title,
+            style: Theme.of(context).textTheme.titleMedium,
           ),
         ),
         Padding(padding: EdgeInsets.all(8.0)),
         Container(
           width: 100 + 100 * 0.8 * (SizeScaling.getWidthScaling() - 1),
           child: TextFormField(
-            controller: lgt_controller,
+            autovalidateMode: AutovalidateMode.always, controller: lgt_controller,
             validator: (value) {
               if (value.length == 0 && double.tryParse(value) != null)
                 return 'Enter a valid value.';
             },
-            autovalidate: true,
             keyboardType: TextInputType.number,
             textInputAction: TextInputAction.next,
             autocorrect: true,
@@ -358,19 +354,18 @@ class CoordsLayer extends StatelessWidget {
               labelText: "Longitude",
             ),
             maxLines: 1,
-            style: Theme.of(context).textTheme.title,
+            style: Theme.of(context).textTheme.titleMedium,
           ),
         ),
         Padding(padding: EdgeInsets.all(8.0)),
         Container(
           width: 100 + 100 * 0.8 * (SizeScaling.getWidthScaling() - 1),
           child: TextFormField(
-            controller: zInd_controller,
+            autovalidateMode: AutovalidateMode.always, controller: zInd_controller,
             validator: (value) {
               if (value.length == 0 && double.tryParse(value) != null)
                 return 'Enter a valid value.';
             },
-            autovalidate: true,
             keyboardType: TextInputType.number,
             textInputAction: TextInputAction.done,
             autocorrect: true,
@@ -378,7 +373,7 @@ class CoordsLayer extends StatelessWidget {
               labelText: "Z index",
             ),
             maxLines: 1,
-            style: Theme.of(context).textTheme.title,
+            style: Theme.of(context).textTheme.titleMedium,
           ),
         ),
       ],
@@ -403,7 +398,7 @@ class PlacemarkLayer extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text("Placemark size", style: Theme.of(context).textTheme.title),
+              Text("Placemark size", style: Theme.of(context).textTheme.titleMedium),
               DropdownButton<int>(
                 value: data.iconSize,
                 onChanged: (int value) => onSizeChange(value),
@@ -412,7 +407,7 @@ class PlacemarkLayer extends StatelessWidget {
                   return DropdownMenuItem<int>(
                     value: value,
                     child: Text(value.toString(),
-                        style: Theme.of(context).textTheme.title),
+                        style: Theme.of(context).textTheme.titleMedium),
                   );
                 }).toList(),
               ),
@@ -422,7 +417,7 @@ class PlacemarkLayer extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text("Placemark color", style: Theme.of(context).textTheme.title),
+              Text("Placemark color", style: Theme.of(context).textTheme.titleMedium),
               DropdownButton<MarkerColors>(
                 value: (MarkerColors.values() as List<MarkerColors>)
                     .firstWhere((val) => val.value == data.iconColor),
@@ -432,7 +427,7 @@ class PlacemarkLayer extends StatelessWidget {
                   return DropdownMenuItem<MarkerColors>(
                     value: value,
                     child: Text(value.title,
-                        style: Theme.of(context).textTheme.title),
+                        style: Theme.of(context).textTheme.titleMedium),
                   );
                 }).toList(),
               ),
@@ -461,7 +456,7 @@ class LineDataLayer extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text("Line width", style: Theme.of(context).textTheme.title),
+              Text("Line width", style: Theme.of(context).textTheme.titleMedium),
               DropdownButton<int>(
                 value: data.width,
                 onChanged: (int value) => onWidthChange(value),
@@ -470,7 +465,7 @@ class LineDataLayer extends StatelessWidget {
                   return DropdownMenuItem<int>(
                     value: value,
                     child: Text(value.toString(),
-                        style: Theme.of(context).textTheme.title),
+                        style: Theme.of(context).textTheme.titleMedium),
                   );
                 }).toList(),
               ),
@@ -480,7 +475,7 @@ class LineDataLayer extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text("Line color", style: Theme.of(context).textTheme.title),
+              Text("Line color", style: Theme.of(context).textTheme.titleMedium),
               DropdownButton<LineColors>(
                 value: (LineColors.values() as List<LineColors>)
                     .firstWhere((val) => val.value == data.color),
@@ -490,7 +485,7 @@ class LineDataLayer extends StatelessWidget {
                   return DropdownMenuItem<LineColors>(
                     value: value,
                     child: Text(value.title,
-                        style: Theme.of(context).textTheme.title),
+                        style: Theme.of(context).textTheme.titleMedium),
                   );
                 }).toList(),
               ),
@@ -521,7 +516,7 @@ class PolygonDataLayer extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text("Stroke width", style: Theme.of(context).textTheme.title),
+              Text("Stroke width", style: Theme.of(context).textTheme.titleMedium),
               DropdownButton<int>(
                 value: data.width,
                 onChanged: (int value) => onWidthChange(value),
@@ -530,7 +525,7 @@ class PolygonDataLayer extends StatelessWidget {
                   return DropdownMenuItem<int>(
                     value: value,
                     child: Text(value.toString(),
-                        style: Theme.of(context).textTheme.title),
+                        style: Theme.of(context).textTheme.titleMedium),
                   );
                 }).toList(),
               ),
@@ -540,7 +535,7 @@ class PolygonDataLayer extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text("Polygon color", style: Theme.of(context).textTheme.title),
+              Text("Polygon color", style: Theme.of(context).textTheme.titleMedium),
               DropdownButton<LineColors>(
                 value: (LineColors.values() as List<LineColors>)
                     .firstWhere((val) => val.value == data.color),
@@ -550,7 +545,7 @@ class PolygonDataLayer extends StatelessWidget {
                   return DropdownMenuItem<LineColors>(
                     value: value,
                     child: Text(value.title,
-                        style: Theme.of(context).textTheme.title),
+                        style: Theme.of(context).textTheme.titleMedium),
                   );
                 }).toList(),
               ),
@@ -560,7 +555,7 @@ class PolygonDataLayer extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text("Stroke color", style: Theme.of(context).textTheme.title),
+              Text("Stroke color", style: Theme.of(context).textTheme.titleMedium),
               DropdownButton<LineColors>(
                 value: (LineColors.values() as List<LineColors>)
                     .firstWhere((val) => val.value == data.strokeColor),
@@ -571,7 +566,7 @@ class PolygonDataLayer extends StatelessWidget {
                   return DropdownMenuItem<LineColors>(
                     value: value,
                     child: Text(value.title,
-                        style: Theme.of(context).textTheme.title),
+                        style: Theme.of(context).textTheme.titleMedium),
                   );
                 }).toList(),
               ),
@@ -593,7 +588,7 @@ class ImageDataLayer extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text("Image :", style: Theme.of(context).textTheme.title),
+        Text("Image :", style: Theme.of(context).textTheme.titleMedium),
         Container(
           constraints: BoxConstraints(
               maxHeight: 320.0 * SizeScaling.getWidthScaling(),
@@ -672,7 +667,7 @@ class _ChoiceChipsState extends State<ChoiceChips> {
                   16 + 16 * 0.8 * (SizeScaling.getWidthScaling() - 1),
                 ))),
             child: Text(widget.labels[i],
-                style: Theme.of(context).textTheme.body1),
+                style: Theme.of(context).textTheme.bodyLarge),
           ),
         ),
       );

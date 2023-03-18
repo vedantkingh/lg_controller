@@ -62,12 +62,12 @@ class AuxillaryMenuBar extends StatelessWidget {
     switch (ic) {
       case AuxillaryMenu.PROFILE:
         {
-          BlocProvider.of<PageBloc>(context).dispatch(PROFILE());
+          BlocProvider.of<PageBloc>(context).add(PROFILE());
         }
         break;
       case AuxillaryMenu.SETTINGS:
         {
-          BlocProvider.of<PageBloc>(context).dispatch(SETTINGS());
+          BlocProvider.of<PageBloc>(context).add(SETTINGS());
         }
         break;
       default:

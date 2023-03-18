@@ -115,4 +115,8 @@ class KMLData extends Equatable {
         tilt = json['tilt'],
         count = json['count'],
         imageUrl = json['imageUrl'];
+
+  @override
+  // TODO: implement props
+  List<Object> get props => throw UnimplementedError();
 }

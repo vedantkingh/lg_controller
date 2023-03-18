@@ -2,8 +2,8 @@ import 'dart:math';
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
-import 'package:image/image.dart';
-import 'package:image_picker_modern/image_picker_modern.dart';
+import 'package:image/image.dart' hide ImageData;
+import 'package:image_picker/image_picker.dart';
 import 'package:lg_controller/src/menu/OverlayMenu.dart';
 import 'package:lg_controller/src/models/OverlayItem.dart';
 import 'package:lg_controller/src/models/PlacemarkData.dart';
@@ -19,7 +19,7 @@ class PointBloc extends Bloc<PointEvent, PointState> {
   @override
   PointState get initialState => UninitializedState([]);
 
-  PointBloc();
+  PointBloc() : super(null);
 
   /// Instance of a list of [OverlayItem] to store the overlays.
   final List<OverlayItem> data = [];
@@ -60,7 +60,7 @@ class PointBloc extends Bloc<PointEvent, PointState> {
         String id = String.fromCharCodes(
             List<int>.generate(10, (i) => (97 + rnd.nextInt(26))));
 
-        File image = await ImagePicker.pickImage(source: ImageSource.gallery, maxWidth: 400, maxHeight: 400);
+        File image = (await new ImagePicker().pickImage(source: ImageSource.gallery)) as File;
         if(image!=null)
           {
             List<int> thumbnail = encodePng(copyResize(decodeImage(await image.readAsBytes()),width: 80,height: 80));

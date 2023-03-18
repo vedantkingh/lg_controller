@@ -43,10 +43,10 @@ class _GuidePageState extends State<GuidePage> {
                     child: Center(
                         child: CardSlider([
                       GuideGesture(),
-                          BlocProviderTree(
-                              blocProviders: [
-                                BlocProvider<FreezeBloc>(bloc: fBloc),
-                                BlocProvider<PointBloc>(bloc: pBloc),
+                          MultiBlocProvider(
+                              providers: [
+                                BlocProvider<FreezeBloc>(create: (BuildContext context)=>fBloc),
+                                BlocProvider<PointBloc>(create: (BuildContext context)=>pBloc),
                               ],
                               child: GuidePlacemark(),
                       ),

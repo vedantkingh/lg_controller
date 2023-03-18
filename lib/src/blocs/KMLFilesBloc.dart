@@ -20,7 +20,7 @@ class KMLFilesBloc extends Bloc<KMLFilesEvent, KMLFilesState> {
   /// Instance of [SQLDatabase] to get KML data from local storage.
   final SQLDatabase database;
 
-  KMLFilesBloc(this.fileRequests, this.database, this.pagestate);
+  KMLFilesBloc(this.fileRequests, this.database, this.pagestate) : super(null);
 
   @override
   Stream<KMLFilesState> mapEventToState(KMLFilesEvent event) async* {

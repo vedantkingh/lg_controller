@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:barcode_scan/barcode_scan.dart';
+import 'package:barcode_scan2/barcode_scan2.dart';
 import 'package:lg_controller/src/osc/OSCActions.dart';
 import 'package:toast/toast.dart';
 
@@ -26,7 +26,7 @@ class _QRSenderDialogState extends State<QRSenderDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('Sending..', style: Theme.of(context).textTheme.title),
+      title: Text('Sending..', style: Theme.of(context).textTheme.titleMedium),
       content: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Center(
@@ -39,10 +39,11 @@ class _QRSenderDialogState extends State<QRSenderDialog> {
   /// Scan the barcode of receiver.
   Future scan() async {
     try {
-      String data = await BarcodeScanner.scan();
+      ScanResult datascan = await BarcodeScanner.scan();
+      String data=datascan.rawContent;
       setState(() => this.data = data);
     } on PlatformException catch (e) {
-      if (e.code == BarcodeScanner.CameraAccessDenied) {
+      if (e.code == BarcodeScanner.cameraAccessDenied) {
         setState(() {
           this.data = "";
         });
@@ -67,9 +68,9 @@ class _QRSenderDialogState extends State<QRSenderDialog> {
       Navigator.of(context).pop();
       Toast.show(
         'Invalid receiver.',
-        context,
-        duration: Toast.LENGTH_LONG,
-        gravity: Toast.BOTTOM,
+        textStyle: context,
+        duration: Toast.lengthLong,
+        gravity: Toast.bottom,
       );
       return;
     }
@@ -77,9 +78,9 @@ class _QRSenderDialogState extends State<QRSenderDialog> {
     Navigator.of(context).pop();
     Toast.show(
       'Module sent successfully.',
-      context,
-      duration: Toast.LENGTH_LONG,
-      gravity: Toast.BOTTOM,
+      textStyle: context,
+      duration: Toast.lengthLong,
+      gravity: Toast.bottom,
     );
   }
 

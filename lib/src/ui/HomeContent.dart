@@ -49,7 +49,7 @@ class HomeContent extends StatelessWidget {
     PlacesSearchResponse response = await _places.searchByText(text);
     print(response.status);
     if (response.isOkay && response.results.length > 0) {
-      BlocProvider.of<PageBloc>(context).dispatch(HOME(KMLData(
+      BlocProvider.of<PageBloc>(context).add(HOME(KMLData(
           title: response.results[0].name,
           desc: response.results[0].formattedAddress,
           latitude: response.results[0].geometry.location.lat,

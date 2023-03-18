@@ -41,7 +41,7 @@ class MainMenuBar extends StatelessWidget {
                       minWidth: 48 + 32 * (SizeScaling.getWidthScaling() - 1)),
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   child:
-                      Text(ic.title, style: Theme.of(context).textTheme.body1),
+                      Text(ic.title, style: Theme.of(context).textTheme.bodyLarge),
                   splashColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                 )),
@@ -69,27 +69,27 @@ class MainMenuBar extends StatelessWidget {
     switch (ic) {
       case MainMenu.HOME:
         {
-          BlocProvider.of<PageBloc>(context).dispatch(HOME(null));
+          BlocProvider.of<PageBloc>(context).add(HOME(null));
         }
         break;
       case MainMenu.TOURS:
         {
-          BlocProvider.of<PageBloc>(context).dispatch(TOUR());
+          BlocProvider.of<PageBloc>(context).add(TOUR());
         }
         break;
       case MainMenu.POI:
         {
-          BlocProvider.of<PageBloc>(context).dispatch(POI());
+          BlocProvider.of<PageBloc>(context).add(POI());
         }
         break;
       case MainMenu.GUIDE:
         {
-          BlocProvider.of<PageBloc>(context).dispatch(GUIDE());
+          BlocProvider.of<PageBloc>(context).add(GUIDE());
         }
         break;
       case MainMenu.OVERLAY:
         {
-          BlocProvider.of<PageBloc>(context).dispatch(OVERLAY());
+          BlocProvider.of<PageBloc>(context).add(OVERLAY());
         }
         break;
       default:

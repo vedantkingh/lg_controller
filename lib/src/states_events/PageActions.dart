@@ -10,28 +10,60 @@ class HOME extends PageEvent {
   KMLData data;
 
   HOME(this.data);
+
+  @override
+  // TODO: implement props
+  List<Object> get props => throw UnimplementedError();
 }
 
 /// To clear data on home event.
-class CLEARDATA extends PageEvent {}
+class CLEARDATA extends PageEvent {
+  @override
+  // TODO: implement props
+  List<Object> get props => throw UnimplementedError();
+}
 
 /// POI page event.
-class POI extends PageEvent {}
+class POI extends PageEvent {
+  @override
+  // TODO: implement props
+  List<Object> get props => throw UnimplementedError();
+}
 
 /// Guide page event.
-class GUIDE extends PageEvent {}
+class GUIDE extends PageEvent {
+  @override
+  // TODO: implement props
+  List<Object> get props => throw UnimplementedError();
+}
 
 /// Overlay page event.
-class OVERLAY extends PageEvent {}
+class OVERLAY extends PageEvent {
+  @override
+  // TODO: implement props
+  List<Object> get props => throw UnimplementedError();
+}
 
 /// Profile page event.
-class PROFILE extends PageEvent {}
+class PROFILE extends PageEvent {
+  @override
+  // TODO: implement props
+  List<Object> get props => throw UnimplementedError();
+}
 
 /// Settings page event.
-class SETTINGS extends PageEvent {}
+class SETTINGS extends PageEvent {
+  @override
+  // TODO: implement props
+  List<Object> get props => throw UnimplementedError();
+}
 
 /// Tour page event.
-class TOUR extends PageEvent {}
+class TOUR extends PageEvent {
+  @override
+  // TODO: implement props
+  List<Object> get props => throw UnimplementedError();
+}
 
 /// Bloc states for page transitions.
 abstract class PageState {}

@@ -52,4 +52,8 @@ class LineData extends OverlayItem {
   String toString() {
     return toJson().toString();
   }
+
+  @override
+  // TODO: implement props
+  List<Object> get props => throw UnimplementedError();
 }

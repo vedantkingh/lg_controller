@@ -6,16 +6,19 @@ import 'package:lg_controller/src/blocs/NavBarBloc.dart';
 import 'package:lg_controller/src/gdrive/FileRequests.dart';
 import 'package:lg_controller/src/menu/MainMenu.dart';
 import 'package:lg_controller/src/resources/SQLDatabase.dart';
+import 'package:lg_controller/src/states_events/NavBarActions.dart';
 import 'package:lg_controller/src/ui/KMLGridContent.dart';
 
 void main() {
   testWidgets('POI Content component check', (WidgetTester tester) async {
     KMLFilesBloc kml_files_bloc =
         new KMLFilesBloc(FileRequests(), SQLDatabase(), MainMenu.POI);
-    Widget root = BlocProviderTree(
-      blocProviders: [
-        BlocProvider<NavBarBloc>(bloc: new NavBarBloc()),
-        BlocProvider<KMLFilesBloc>(bloc: kml_files_bloc),
+    Widget root = MultiBlocProvider(
+      providers: [
+        BlocProvider<NavBarBloc>(
+            create: (BuildContext context) => new NavBarBloc(RecentlyState())),
+        BlocProvider<KMLFilesBloc>(
+            create: (BuildContext context) => kml_files_bloc),
       ],
       child: new KMLGridContent(),
     );

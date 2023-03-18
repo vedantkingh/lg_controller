@@ -29,7 +29,7 @@ main() {
       KMLFilesBloc bloc = KMLFilesBloc(client_fr, client_sql, MainMenu.POI);
       when(client_fr.getFiles(MainMenu.POI)).thenAnswer((_) async => null);
       when(client_sql.getData(MainMenu.POI)).thenAnswer((_) async => null);
-      bloc.dispatch(GET_FILES());
+      bloc.add(GET_FILES());
       expect(bloc.state, emitsInOrder([UninitializedState(), LoadingState()]));
     });
 
@@ -37,7 +37,7 @@ main() {
       KMLFilesBloc bloc = KMLFilesBloc(client_fr, client_sql, MainMenu.POI);
       when(client_fr.getFiles(MainMenu.POI)).thenAnswer((_) async => null);
       when(client_sql.getData(MainMenu.POI)).thenAnswer((_) async => Map());
-      bloc.dispatch(GET_FILES());
+      bloc.add(GET_FILES());
       verifyInOrder(
           [client_sql.getData(MainMenu.POI), client_fr.getFiles(MainMenu.POI)]);
       expect(
@@ -50,7 +50,7 @@ main() {
       KMLFilesBloc bloc = KMLFilesBloc(client_fr, client_sql, MainMenu.POI);
       when(client_fr.getFiles(MainMenu.POI)).thenAnswer((_) async => Map());
       when(client_sql.getData(MainMenu.POI)).thenAnswer((_) async => null);
-      bloc.dispatch(GET_FILES());
+      bloc.add(GET_FILES());
       verifyInOrder(
           [client_sql.getData(MainMenu.POI), client_fr.getFiles(MainMenu.POI)]);
       expect(
@@ -62,7 +62,7 @@ main() {
       KMLFilesBloc bloc = KMLFilesBloc(client_fr, client_sql, MainMenu.POI);
       when(client_fr.getFiles(MainMenu.POI)).thenAnswer((_) async => Map());
       when(client_sql.getData(MainMenu.POI)).thenAnswer((_) async => Map());
-      bloc.dispatch(GET_FILES());
+      bloc.add(GET_FILES());
       verifyInOrder(
           [client_sql.getData(MainMenu.POI), client_fr.getFiles(MainMenu.POI)]);
       expect(
@@ -73,7 +73,7 @@ main() {
 
     test('Dispose call', () {
       KMLFilesBloc bloc = KMLFilesBloc(client_fr, client_sql, MainMenu.POI);
-      bloc.dispose();
+      bloc.close();
       expect(bloc.state, emitsInOrder([]));
     });
   });
