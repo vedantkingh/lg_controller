@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lg_controller/src/blocs/PageBloc.dart';
-import 'package:lg_controller/src/menu/MainMenu.dart';
 import 'package:lg_controller/src/screens/GuidePage.dart';
 import 'package:lg_controller/src/screens/HomePage.dart';
 import 'package:lg_controller/src/screens/OverlayPage.dart';
